@@ -1,0 +1,26 @@
+CREATE DATABASE Tienda;
+use Tienda;
+
+CREATE TABLE `lugares` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lugar` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+INSERT INTO `lugares` VALUES (1,'EstadioNacional'),(2,'EstadioSaprissa'),(3,'PeppersClub'),(4,'ParqueViva'),(5,'Terramall');
+
+CREATE TABLE `conciertos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `artista` varchar(45) NOT NULL,
+  `costo` varchar(45) NOT NULL,
+  `fecha` varchar(45) NOT NULL,
+  `capacidad` varchar(75) DEFAULT NULL,
+  `lugares_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`lugares_id`),
+  KEY `fk_personas_lugares_idx` (`lugares_id`),
+  CONSTRAINT `fk_conciertos_lugares` FOREIGN KEY (`lugares_id`) REFERENCES `paises` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ;
+
+INSERT INTO `conciertos` VALUES (1,'Megadeth','85000','24/06/2022','80000',1);
+INSERT INTO `conciertos` VALUES (2,'BadBunny','75000','28/08/2022','80000',1);
+INSERT INTO `conciertos` VALUES (3,'OliverTree','60000','13/12/2022','5000',3);
